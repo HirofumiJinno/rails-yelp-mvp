@@ -5,3 +5,16 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+puts 'Cleaning the db...'
+Restaurant.destroy_all
+
+puts 'Creating 50 restaunrants...'
+50.times do
+  Restaurant.create!(
+    name: "#{Faker::Hipster.word} #{Faker::Food.dish}",
+    address: Faker::Games::SuperMario.location,
+    phone_number: Faker::PhoneNumber.phone_number,
+    catetory: Restaurant::CATEGORIES.sample
+  )
+end
+puts "...created #{Restaurant.count} restaurants"
